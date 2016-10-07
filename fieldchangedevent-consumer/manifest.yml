@@ -1,0 +1,13 @@
+---
+applications:
+  - name: dev-fieldchangedevent-consumer
+    buildpack: java_buildpack
+    path: target/fieldchangedevent-consumer-2.0.0.jar
+    services:
+        - analytics-rmd-rabbitmq
+env:
+    SPRING_PROFILES_ACTIVE : cloud,clouddev
+    predix_oauth_restHost : 5f37babc-08cd-4d3c-9f7f-0ffd3b474f0f.predix-uaa-sysint.grc-apps.svc.ice.ge.com
+    predix_oauth_clientId : app_client_id:secret
+    fieldChangedEvent_MainQueue: FieldChangedEventMainQueue
+    fieldChangedEvent_ErrorQueue: FieldChangedEventErrorQueue

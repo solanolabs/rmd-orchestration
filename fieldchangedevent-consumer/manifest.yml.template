@@ -1,0 +1,24 @@
+#inherit: base-manifest.yml
+applications:
+  - name: template-fieldchangedevent-consumer
+    buildpack: java_buildpack
+    path: target/fieldchangedevent-consumer-2.0.0.jar
+    memory: 1GB
+    i : 2
+    services:
+        - ${rabbitMQService}
+env:
+    predix_oauth_restHost : ${oauthRestHost}
+    predix_oauth_clientId : ${clientId}:${secret}
+    predix_orchestration_zoneid : ${analyticsRuntimeZone}
+    predix_timeseries_ws_retry_attempt: 1
+    predix_orchestration_restProtocol : https
+    predix_orchestration_restHost : ${analyticsRuntimeService}
+    predix_orchestration_restPort : 443
+    predix_orchestration_restBaseResource : api/v1/execution
+    fieldChangedEvent_MainQueue: FieldChangedEventMainQueue
+    fieldChangedEvent_ErrorQueue: FieldChangedEventErrorQueue
+    predix_analytics : ${rmdAnalyticsURI}/api/v1/ref_app_analytic/execution
+    predix_orchestration_restPort : 443
+    predix_analytic_restHost : ${rmdAnalyticsURI}
+    
